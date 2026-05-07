@@ -139,14 +139,22 @@
             </div>
 
             <!-- Pilihan Mode Permainan -->
-            <div class="w-full flex gap-3 pointer-events-auto">
-                <button onclick="startGame('1P')" class="btn-3d flex-1 bg-white hover:bg-gray-100 text-game-blue text-xl font-bold py-4 rounded-2xl flex flex-col items-center justify-center">
-                    <i class="fa-solid fa-user text-3xl mb-2"></i>
-                    <span id="ui-btn-solo">SOLO (1P)</span>
-                </button>
-                <button onclick="startGame('2P')" class="btn-3d flex-1 bg-game-yellow hover:bg-yellow-400 text-yellow-900 text-xl font-bold py-4 rounded-2xl flex flex-col items-center justify-center">
-                    <i class="fa-solid fa-users text-3xl mb-2"></i>
-                    <span id="ui-btn-multi">MULTIPLAYER</span>
+            <div class="w-full flex flex-col gap-3 pointer-events-auto">
+                <div class="flex gap-3 w-full">
+                    <button onclick="startGame('1P')" class="btn-3d flex-1 bg-white hover:bg-gray-100 text-game-blue text-xl font-bold py-4 rounded-2xl flex flex-col items-center justify-center">
+                        <i class="fa-solid fa-user text-3xl mb-2"></i>
+                        <span id="ui-btn-solo">SOLO (1P)</span>
+                    </button>
+                    <button onclick="startGame('2P')" class="btn-3d flex-1 bg-game-yellow hover:bg-yellow-400 text-yellow-900 text-xl font-bold py-4 rounded-2xl flex flex-col items-center justify-center">
+                        <i class="fa-solid fa-users text-3xl mb-2"></i>
+                        <span id="ui-btn-multi">MULTIPLAYER</span>
+                    </button>
+                </div>
+                
+                <!-- Tombol Link PDF Materi -->
+                <button onclick="openPDF()" class="btn-3d w-full bg-game-green hover:bg-green-600 text-white text-xl font-bold py-4 rounded-2xl flex items-center justify-center transition-all mt-2 border-b-4 border-green-700">
+                    <i class="fa-solid fa-book-journal-whills text-2xl mr-3"></i>
+                    <span id="ui-btn-pdf">BUKU SAKU DETEKTIF SIBER</span>
                 </button>
             </div>
         </div>
@@ -288,10 +296,17 @@
             }
         }
 
+        // --- FUNGSI BUKA PDF ---
+        function openPDF() {
+            // Mengarahkan pengguna ke file materi. Pastikan file "prebunking.pdf" ada di folder yang sama.
+            window.open('prebunking.pdf', '_blank');
+        }
+
         // --- DICTIONARY UI ---
         const uiDict = {
             "ui-btn-solo": { id: "SOLO (1P)", en: "SOLO (1P)" },
             "ui-btn-multi": { id: "MULTIPLAYER", en: "MULTIPLAYER" },
+            "ui-btn-pdf": { id: "BUKU SAKU DETEKTIF SIBER", en: "CYBER DETECTIVE HANDBOOK" },
             "ui-q-title": { id: "Benar atau Salah?", en: "True or False?" },
             "ui-btn-guess-true": { id: "BENAR", en: "TRUE" },
             "ui-btn-guess-false": { id: "SALAH", en: "FALSE" },
