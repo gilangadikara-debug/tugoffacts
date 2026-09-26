@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MainCerdas.id - Platform Belajar Interaktif</title>
+  
+  <!-- Font Google Nunito -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Reset & CSS Dasar */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #8B2FC9; /* Background ungu ceria identik referensi */
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #333333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2.5rem 1.25rem 1.5rem;
+    }
+
+    /* Container Utama */
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+    }
+
+    /* Header & Logo */
+    header {
+      margin-bottom: 2.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    .main-logo {
+      width: 100%;
+      max-width: 460px; /* Ukuran pas proporsional dengan layout desktop */
+      height: auto;
+      object-fit: contain;
+      display: block;
+      filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.15));
+    }
+
+    /* Grid Kartu Game */
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      width: 100%;
+      align-items: stretch;
+    }
+
+    /* Tampilan Mobile: Kartu Menurun */
+    @media (max-width: 860px) {
+      .games-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+      }
+      .main-logo {
+        max-width: 320px;
+      }
+      body {
+        padding-top: 1.5rem;
+      }
+    }
+
+    /* Desain Kartu Game */
+    .card {
+      background: #FFFFFF;
+      border-radius: 20px;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Kartu Coming Soon (Hitam sesuai referensi) */
+    .card-dark {
+      background: #111111;
+      color: #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 280px;
+      text-align: center;
+    }
+
+    /* Banner Thumbnail Game */
+    .thumb-wrapper {
+      width: 100%;
+      height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      overflow: hidden;
+      background: #FAFAFA;
+      border-radius: 12px;
+    }
+
+    .thumb-img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    /* Konten Kartu */
+    .card-body {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: space-between;
+    }
+
+    .card-title {
+      font-family: 'Nunito', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: #1F2937;
+      margin-bottom: 0.35rem;
+    }
+
+    .card-desc {
+      font-size: 0.875rem;
+      line-height: 1.45;
+      color: #4B5563;
+      margin-bottom: 1.25rem;
+    }
+
+    /* Tombol Aksi */
+    .btn-group {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: auto;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 0.6rem 0.75rem;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: opacity 0.2s ease, filter 0.2s ease;
+    }
+
+    .btn:hover {
+      opacity: 0.92;
+    }
+
+    .btn-primary {
+      background-color: #8B2FC9;
+      color: #FFFFFF;
+    }
+
+    .btn-secondary {
+      background-color: #F3F4F6;
+      color: #4B5563;
+    }
+
+    /* Teks Coming Soon */
+    .coming-soon-title {
+      font-family: 'Nunito', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.5rem;
+    }
+
+    .coming-soon-desc {
+      font-size: 0.875rem;
+      color: #9CA3AF;
+      max-width: 220px;
+    }
+
+    /* Footer & Link Tentang */
+    footer {
+      margin-top: 2.5rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    .about-link {
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, 0.9);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.825rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      transition: color 0.2s ease;
+    }
+
+    .about-link:hover {
+      color: #FFFFFF;
+    }
+
+    /* Modal / Pop-up */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.25rem;
+      z-index: 100;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-box {
+      background: #FFFFFF;
+      width: 100%;
+      max-width: 440px;
+      border-radius: 20px;
+      padding: 2rem 1.75rem;
+      position: relative;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      animation: popIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .modal-preview-box {
+      max-width: 680px;
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.92); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1.1rem;
+      background: #F3F4F6;
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #6B7280;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-close:hover {
+      background: #E5E7EB;
+      color: #111111;
+    }
+
+    /* Modal Text Khusus "Tentang" (Ungu Bold Rata Tengah) */
+    .about-content {
+      color: #7C3AED;
+      font-weight: 700;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .about-content a {
+      color: #6D28D9;
+      text-decoration: underline;
+      font-weight: 800;
+    }
+
+    .about-content .closing {
+      margin-top: 0.5rem;
+      font-size: 1.05rem;
+      font-weight: 800;
+    }
+
+    /* Modal Preview Gambar */
+    .preview-img-container {
+      width: 100%;
+      max-height: 380px;
+      background: #000;
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 1rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .preview-img-container img {
+      max-width: 100%;
+      max-height: 380px;
+      object-fit: contain;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Header Logo Utama -->
+    <header>
+      <img 
+        src="assets/maincerdas.png" 
+        alt="MainCerdas.id" 
+        class="main-logo"
+        onerror="this.onerror=null; this.outerHTML='<h1 style=\'font-family:Nunito,sans-serif;font-size:2.8rem;color:#FFF;text-shadow:0 4px 12px rgba(0,0,0,0.2);\'>MainCerdas.id</h1>';"
+      />
+    </header>
+
+    <!-- Grid 3 Pilihan Game -->
+    <main class="games-grid">
+      <!-- Game 1: Tug of Facts -->
+      <article class="card">
+        <div class="thumb-wrapper">
+          <img 
+            src="assets/tug-of-facts.png" 
+            alt="Tug of Facts" 
+            class="thumb-img" 
+            onerror="this.onerror=null; this.src='https://dummyimage.com/640x360/fafafa/7c3aed.png&text=TUG+OF+FACTS';"
+          />
+        </div>
+        <div class="card-body">
+          <div>
+            <h2 class="card-title">Tug of Facts</h2>
+            <p class="card-desc">
+              Adu keterampilanmu dalam menebak fakta. Mainkan dalam mode solo atau multiplayer.
+            </p>
+          </div>
+          <div class="btn-group">
+            <button class="btn btn-secondary" onclick="openPreview('Tug of Facts', 'assets/preview-tug-of-facts.png', 'assets/tug-of-facts.png', './tug-of-facts/')">
+              Preview
+            </button>
+            <a href="./tug-of-facts/" class="btn btn-primary">
+              Mainkan
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Game 2: Perisai Data -->
+      <article class="card">
+        <div class="thumb-wrapper">
+          <img 
+            src="assets/perisai-data.png" 
+            alt="Perisai Data" 
+            class="thumb-img" 
+            onerror="this.onerror=null; this.src='https://dummyimage.com/640x360/fafafa/7c3aed.png&text=PERISAI+DATA';"
+          />
+        </div>
+        <div class="card-body">
+          <div>
+            <h2 class="card-title">Perisai Data</h2>
+            <p class="card-desc">
+              Jadilah pahlawan yang melindungi kota dari serangan mis/disinformasi!
+            </p>
+          </div>
+          <div class="btn-group">
+            <button class="btn btn-secondary" onclick="openPreview('Perisai Data', 'assets/preview-perisai-data.png', 'assets/perisai-data.png', './perisai-data/')">
+              Preview
+            </button>
+            <a href="./perisai-data/" class="btn btn-primary">
+              Mainkan
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Game 3: Coming Soon -->
+      <article class="card card-dark">
+        <h2 class="coming-soon-title">Coming Soon</h2>
+        <p class="coming-soon-desc">
+          Tantangan berikutnya sedang kami siapkan, sabar ya!
+        </p>
+      </article>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <button class="about-link" onclick="openAboutModal()">
+        Tentang MainCerdas.id
+      </button>
+    </footer>
+  </div>
+
+  <!-- POPUP MODAL: TENTANG MAINCERDAS.ID -->
+  <div id="aboutModal" class="modal-overlay" onclick="handleBackdropClick(event, 'aboutModal')">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('aboutModal')">&times;</button>
+      <div class="about-content">
+        <p>MainCerdas.id adalah platform belajar nonprofit.</p>
+        <p>
+          Dikelola dan dikembangkan oleh 
+          <a href="https://www.instagram.com/gilangadikara/" target="_blank" rel="noopener noreferrer">Gilang Adikara</a>.
+        </p>
+        <p>
+          Untuk informasi dan berkomunikasi lebih lanjut, silakan kirim DM ke akun tersebut.
+        </p>
+        <p class="closing">Selamat Bermain dan Belajar :)</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- POPUP MODAL: IN-GAME PREVIEW -->
+  <div id="previewModal" class="modal-overlay" onclick="handleBackdropClick(event, 'previewModal')">
+    <div class="modal-box modal-preview-box">
+      <button class="modal-close" onclick="closeModal('previewModal')">&times;</button>
+      <h3 id="previewTitle" style="font-family:'Nunito',sans-serif;font-size:1.4rem;font-weight:900;color:#1F2937;margin-bottom:0.25rem;">Preview Game</h3>
+      <p style="font-size:0.85rem;color:#6B7280;">Cuplikan tampilan permainan</p>
+      
+      <div class="preview-img-container">
+        <img id="previewImg" src="" alt="Gameplay Preview" />
+      </div>
+
+      <div style="display:flex;justify-content:flex-end;gap:0.75rem;margin-top:1rem;">
+        <button class="btn btn-secondary" style="flex:0 0 auto;padding:0.6rem 1.25rem;" onclick="closeModal('previewModal')">Tutup</button>
+        <a id="previewPlayBtn" href="#" class="btn btn-primary" style="flex:0 0 auto;padding:0.6rem 1.5rem;">Main Sekarang</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openAboutModal() {
+      document.getElementById('aboutModal').classList.add('active');
+    }
+
+    function openPreview(title, imgUrl, fallbackUrl, playUrl) {
+      document.getElementById('previewTitle').innerText = title;
+      const imgElem = document.getElementById('previewImg');
+      
+      imgElem.onerror = function() {
+        this.onerror = null;
+        this.src = fallbackUrl;
+      };
+      imgElem.src = imgUrl;
+
+      document.getElementById('previewPlayBtn').href = playUrl;
+      document.getElementById('previewModal').classList.add('active');
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('active');
+    }
+
+    function handleBackdropClick(e, id) {
+      if (e.target.id === id) {
+        closeModal(id);
+      }
+    }
+
+    // Shortcut ESC untuk tutup popup
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeModal('aboutModal');
+        closeModal('previewModal');
+      }
+    });
+  </script>
+</body>
+</html>
