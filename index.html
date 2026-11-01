@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MainCerdas.id - Platform Belajar Interaktif</title>
   
-  <!-- Font Google Nunito -->
+  <!-- Font Google Nunito & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
@@ -51,14 +51,14 @@
 
     .main-logo {
       width: 100%;
-      max-width: 460px; /* Ukuran pas proporsional dengan layout desktop */
+      max-width: 460px;
       height: auto;
       object-fit: contain;
       display: block;
       filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.15));
     }
 
-    /* Grid Kartu Game */
+    /* Grid Kartu Game (3 Kolom Desktop) */
     .games-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -96,18 +96,6 @@
     .card:hover {
       transform: translateY(-5px);
       box-shadow: 0 16px 36px rgba(0, 0, 0, 0.25);
-    }
-
-    /* Kartu Coming Soon (Hitam sesuai referensi) */
-    .card-dark {
-      background: #111111;
-      color: #FFFFFF;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      min-height: 280px;
-      text-align: center;
     }
 
     /* Banner Thumbnail Game */
@@ -184,21 +172,6 @@
     .btn-secondary {
       background-color: #F3F4F6;
       color: #4B5563;
-    }
-
-    /* Teks Coming Soon */
-    .coming-soon-title {
-      font-family: 'Nunito', sans-serif;
-      font-size: 1.75rem;
-      font-weight: 900;
-      letter-spacing: 0.5px;
-      margin-bottom: 0.5rem;
-    }
-
-    .coming-soon-desc {
-      font-size: 0.875rem;
-      color: #9CA3AF;
-      max-width: 220px;
     }
 
     /* Footer & Link Tentang */
@@ -400,12 +373,32 @@
         </div>
       </article>
 
-      <!-- Game 3: Coming Soon -->
-      <article class="card card-dark">
-        <h2 class="coming-soon-title">Coming Soon</h2>
-        <p class="coming-soon-desc">
-          Tantangan berikutnya sedang kami siapkan, sabar ya!
-        </p>
+      <!-- Game 3: Studio Light Lab -->
+      <article class="card">
+        <div class="thumb-wrapper">
+          <img 
+            src="assets/studiolab.png" 
+            alt="Studio Light Lab" 
+            class="thumb-img" 
+            onerror="this.onerror=null; this.src='https://dummyimage.com/640x360/fafafa/7c3aed.png&text=STUDIO+LIGHT+LAB';"
+          />
+        </div>
+        <div class="card-body">
+          <div>
+            <h2 class="card-title">Studio Light Lab</h2>
+            <p class="card-desc">
+              Simulasi tata pencahayaan studio untuk fotografi.
+            </p>
+          </div>
+          <div class="btn-group">
+            <button class="btn btn-secondary" onclick="openPreview('Studio Light Lab', 'assets/studiolabpreview.png', 'assets/studiolab.png', './studio-light-lab-site/')">
+              Preview
+            </button>
+            <a href="./studio-light-lab-site/" class="btn btn-primary">
+              Mainkan
+            </a>
+          </div>
+        </div>
       </article>
     </main>
 
